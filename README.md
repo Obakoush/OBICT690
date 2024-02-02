@@ -7,7 +7,7 @@ I have used github for another course and I have another personal git account th
 
 > I have used github as a learning resource for a few years, there is a plethora of public repositories with amazing free knowledge on coding, data science, web design, etc. 
 
-'print("Hello, World!")'
+`print("Hello, World!")`
 
 This is the most basic line of code but fun:) 
 
