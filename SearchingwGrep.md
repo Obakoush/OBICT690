@@ -3,6 +3,15 @@ Use scopus.bib file to do grep searches
 Use direct link and wget command to access: `wget https://raw.githubusercontent.com/Obakoush/OBICT690/main/scopus.bib`
 
 ## Snipit of data 
+```
+@ARTICLE{Januário2024,
+	author = {Januário, Jéssica dos Anjos and Giglio, Sérgio Settani and Amaral, Sílvia Cristina Franco},
+	title = {Grandmasters, distinct elite: Taste submitted to discussion from the social conditioning factors of the predilection for chess},
+	year = {2024},
+	journal = {International Review for the Sociology of Sport},
+	doi = {10.1177/10126902231226088},
+	url = {https://www.scopus.com/inward/record.uri?eid=2-s2.0-85183027002&doi=10.1177%2f10126902231226088&partnerID=40&md5=ed196ff62a3f7480008af600cc615810},
+```
 
 ## Basic Commands
 Grep searches line by line, `grep "^@" scopus.bib` will return lines starting w @
@@ -152,8 +161,5 @@ formula breakdown:
 - output `Total Citations: 1`
 
 ## Reflection
-When running `grep "journal" scopus.bib` I wanted to see if `grep "article" scopus.bib` would return article titles however with research I learned `grep -oP '(?<=title = \{).*(?=\},)' scopus.bib` is how you would get that. 
-
-
-
+Overall, grep is a great tool for processing and shifting through data. I tried to mess around with the commands provided in the tutorials to see what outcomes I could get. For example, when running `grep "journal" scopus.bib` I wanted to see if `grep "article" scopus.bib` would return article titles however with research I learned `grep -oP '(?<=title = \{).*(?=\},)' scopus.bib` is how you would get that. 
   
