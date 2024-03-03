@@ -67,6 +67,7 @@ tldr-py/focal 0.7.0-3 all
 ```
 
 **Apt show**
+
 Show specfic info for a certain package 
 ```
 apt show tldr
@@ -157,28 +158,161 @@ Remove extra files
 - `yaz-client` is a command-line tool for information retrieval using the Z39.50 protocol, a standard for querying and retrieving bibliographic information in libraries.
 - SRU (Search/Retrieve via URL) and SRW (Search/Retrieve Web service) are modern successors to Z39.50, facilitating web-based bibliographic record access.
 
-## Installing yaz
+## Yaz
+Search for yaz
+```
+apt search yaz
 
-1. Search for yaz: `apt search yaz`
-2. Install yaz: `sudo apt install yaz`
+Sorting... Done
+Full Text Search... Done
+libnet-z3950-zoom-perl/focal 1.30-2build1 amd64
+  Perl extension implementing the ZOOM API for Information Retrieval via Z39.50
+...
+```
+Learn about yaz package
+```
+apt show yaz
+
+Package: yaz
+Version: 5.28.0-1build2
+Priority: optional
+Section: universe/devel
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Vincent Danjean <vdanjean@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 348 kB
+Depends: libc6 (>= 2.14), libreadline8 (>= 6.0), libxml2 (>= 2.7.4), libyaz5 (>= 5.27.1)
+Conflicts: yaz-runtime, yaz-ssl
+Homepage: https://www.indexdata.com/resources/software/yaz/
+Download-Size: 103 kB
+APT-Manual-Installed: yes
+APT-Sources: http://us-west4.gce.archive.ubuntu.com/ubuntu focal/universe amd64 Packages
+Description: utilities for YAZ Z39.50 toolkit
+ YAZ is a toolkit that allows you to develop software using the
+ ANSI Z39.50/ISO23950 standard for information retrieval.
+ .
+ This package includes utility programs.
+```
+Install yaz
+```
+sudo apt install yaz
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+```
+**Using Yaz**
+
+Access yaz
+
+`yaz-client`
+  *^ starts new command line* `Z>`
+
+Connect to UK lib service 
+```
+Z> open saalck-uky.alma.exlibrisgroup.com:1921/01SAA_UKY
+Connecting...OK.
+Sent initrequest.
+Connection accepted by v3 target.
+ID     : 81
+Name   : Aleph Server/GFS/YAZ
+Version: ALEPH 20/1.1.1.1/2.1.32
+Options: search present delSet triggerResourceCtrl scan sort extendedServices namedResultSets
+
+```
 
 ## Documentation
 
-- Access documentation via `man yaz-client` or visit [YAZ homepage](https://www.indexdata.com/resources/software/yaz/) for comprehensive information.
+To access yaz documentation run
+`man yaz-client`
 
-## Using yaz
+To access yaz documentation via web (more comprehensive)
+[YAZ homepage](https://www.indexdata.com/resources/software/yaz/) 
 
-- Start `yaz-client`: `yaz-client`
-- Connect to a library's OPAC: `open <server_address>`
 
 ## Queries
 
-- Queries use Prefix Query Notation (PQN), structuring searches with operators preceding operands.
-- Example: To search titles with the word 'information' and the subject 'library science': `find @and @attr 1=4 "information" @attr 1=21 "library science"`
-- Use the `show` command to display search results: `show <record_number>`
+- Queries use PQN (Prefix Query Notation), structuring searches with operators preceding operands
 
+**Examples**
 
-### Overview/Reflection
+Search for "information" and Library of Congress Subject Heading "library science"
+```
+yaz-client
+Z> open saalck-uky.alma.exlibrisgroup.com:1921/01SAA_UKY
+Connecting...OK.
+Sent initrequest.
+Connection accepted by v3 target.
+ID     : 81
+Name   : Aleph Server/GFS/YAZ
+Version: ALEPH 20/1.1.1.1/2.1.32
+Options: search present delSet triggerResourceCtrl scan sort extendedServices namedResultSets
+Elapsed: 0.123681
+Z> find @and @attr 1=4 "information" @attr 1=21 "library science"
+Sent searchRequest.
+Received SearchResponse.
+Search was a success.
+Number of hits: 664, setno 1
+records returned: 0
+Elapsed: 1.123562
+```
+Command breakdown
+```
+Find @and @attr 1=4 "information" @attr 1=21 "library science"
 
-Z39.50, SRU, and SRW protocols, along with tools like `yaz-client`, facilitate direct command-line access to digital library searches and bibliographic data retrieval.
+Search w two criteria combined by AND SEARCH WHERE Title CONTAINS
+"information" AND Subject IS "library science" Execute and display results
+IF matches FOUND THEN display matches ELSE "No matches"
+
+```
+To show first record 
+```
+Z> show 1
+Sent presentRequest (1+1)
+```
+Find subject headings "library science" and "philosophy"
+```
+Z> f @and @attr 1=21 "library science" @attr 1=21 "philosophy"
+Sent searchRequest.
+Received SearchResponse.
+Search was a success.
+Number of hits: 59, setno 1
+records returned: 0
+Elapsed: 1.231668
+```
+Command breakdown
+
+```
+f @and @attr 1=21 "library science" @attr 1=21 "philosophy"
+
+Search for records w both specified subjects SEARCH WHERE Subject IS "library science" AND
+Subject IS "philosophy" Execute and display results IF matches FOUND THEN display matches
+ELSE "No matches"
+```
+
+Search for spefic name ex "Larry Mcmurty"
+
+```
+Z> f @attr 1=1 "mcmurtry, larry"
+Sent searchRequest.
+Received SearchResponse.
+Search was a success.
+Number of hits: 59, setno 2
+records returned: 0
+Elapsed: 0.699406
+
+```
+
+Search for "c programming language"
+
+```
+Z> f @attr 1=1016 "c programming language"
+Sent searchRequest.
+Received SearchResponse.
+Search was a success.
+Number of hits: 1637, setno 3
+records returned: 0
+Elapsed: 1.811768
+
+```
 
