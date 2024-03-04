@@ -609,7 +609,8 @@ wardah@main-ubuntu1:/var/www/html$ sudo chown :www-data login.php
 wardah@main-ubuntu1:/var/www/html$ ls -l login.php
 -rw-r----- 1 root www-data 0 Mar  4 00:11 login.php
 wardah@main-ubuntu1:/var/www/html$ sudo nano login.php
-``
+```
+
 Created opac.php file and added in php code
 
 **Test Syntax**
@@ -635,7 +636,8 @@ using a couple of different queries.</p>
 </body>
 </html>
 ```
-Overview:
+
+### Overview:
 - All the sections went smoothly thankfully, I use SQL moderately for work so I am excited to learn new skills. Overall this was a fun section, although I am not really advanced at building websites I will always remember how to make the background light pink. 
 
 
