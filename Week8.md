@@ -182,9 +182,6 @@ Result
 
 View Orginal put `http://34.16.129.98/index.html.original` web adress
 
-### Overview
-- Apache installation and tasks went smoothly. Overall this was a fun section, although I am not really advanced at building websites I will always remember how to make the background light pink. 
-
 
 # Installing and Configuring PHP
 
@@ -509,7 +506,137 @@ mysql> select * from books;
 4 rows in set (0.00 sec)
 ```
 
+**Commands**
+  
+    - a few of the examples ran
 
+Table of author + books
+
+```
+mysql> select author, title from books;
++----------------+-----------------------+
+| author         | title                 |
++----------------+-----------------------+
+| Jennifer Egan  | The Candy House       |
+| Imbolo Mbue    | How Beautiful We Were |
+| Lydia Millet   | A Children's Bible    |
+| Julia Phillips | Disappearing Earth    |
++----------------+-----------------------+
+4 rows in set (0.00 sec)
+
+```
+
+Table of authors in order of copywrite
+
+```
+mysql> select author from books order by copyright;
++----------------+
+| author         |
++----------------+
+| Julia Phillips |
+| Lydia Millet   |
+| Imbolo Mbue    |
+| Jennifer Egan  |
++----------------+
+4 rows in set (0.00 sec)
+
+```
+
+Books where author named "Mbue"
+
+```
+mysql> select title from books where author like '%mbue%';
++-----------------------+
+| title                 |
++-----------------------+
+| How Beautiful We Were |
++-----------------------+
+1 row in set (0.00 sec)
+
+```
+
+
+**Extra commands**
+
+Most recent book by copyright data
+
+```
+mysql> SELECT * FROM books ORDER BY copyright DESC LIMIT 1;
++----+---------------+-----------------+------------+
+| id | author        | title           | copyright  |
++----+---------------+-----------------+------------+
+|  1 | Jennifer Egan | The Candy House | 2022-04-05 |
++----+---------------+-----------------+------------+
+1 row in set (0.00 sec)
+```
+
+Books between specfic dates
+
+```
+SELECT * FROM books WHERE copyright BETWEEN '2018-01-01' AND '2021-12-31';
++----+----------------+-----------------------+------------+
+| id | author         | title                 | copyright  |
++----+----------------+-----------------------+------------+
+|  2 | Imbolo Mbue    | How Beautiful We Were | 2021-03-09 |
+|  3 | Lydia Millet   | A Children's Bible    | 2020-05-12 |
+|  4 | Julia Phillips | Disappearing Earth    | 2019-05-14 |
++----+----------------+-----------------------+------------+
+3 rows in set (0.00 sec)
+```
+
+Books titles that start with H
+
+```
+SELECT * FROM books WHERE title LIKE 'H%';
++----+-------------+-----------------------+------------+
+| id | author      | title                 | copyright  |
++----+-------------+-----------------------+------------+
+|  2 | Imbolo Mbue | How Beautiful We Were | 2021-03-09 |
++----+-------------+-----------------------+------------+
+1 row in set (0.00 sec)
+```
+
+## Install PHP + MySQL Support
+  - installed PHP support
+  - restarted apache 2 and mysql
+
+Change permissons of file + add credentials login.php file
+
+```
+sudo touch login.php
+wardah@main-ubuntu1:/var/www/html$ sudo chmod 640 login.php
+wardah@main-ubuntu1:/var/www/html$ sudo chown :www-data login.php
+wardah@main-ubuntu1:/var/www/html$ ls -l login.php
+-rw-r----- 1 root www-data 0 Mar  4 00:11 login.php
+wardah@main-ubuntu1:/var/www/html$ sudo nano login.php
+``
+Created opac.php file and added in php code
+
+**Test Syntax**
+
+- Run `sudo php -f login.php` if no returns than no errors
+- Run `sudo php -f opac.php` to get the HTML
+
+```
+sudo php -f opac.php
+<html>
+<head>
+<title>MySQL Server Example</title>
+</head>
+<body>
+<h1>A Basic OPAC</h1>
+<p>We can retrieve all the data from our database and book table
+using a couple of different queries.</p>
+<h2>Query 1: Retrieving Publisher and Author Data</h2>PHP Notice:  Undefined index: publisher in /var/www/html/opac.php on line 32
+<p>Publisher  published a book by Jennifer Egan.</p>PHP Notice:  Undefined index: publisher in /var/www/html/opac.php on line 32
+<p>Publisher  published a book by Imbolo Mbue.</p>PHP Notice:  Undefined index: publisher in /var/www/html/opac.php on line 32
+<p>Publisher  published a book by Lydia Millet.</p>PHP Notice:  Undefined index: publisher in /var/www/html/opac.php on line 32
+<p>Publisher  published a book by Julia Phillips.</p><h2>Query 2: Retrieving Author, Title, Date Published Data</h2><p>A book by Jennifer Egan titled <em>The Candy House</em> was released on 2022-04-05.</p><p>A book by Imbolo Mbue titled <em>How Beautiful We Were</em> was released on 2021-03-09.</p><p>A book by Lydia Millet titled <em>A Children's Bible</em> was released on 2020-05-12.</p><p>A book by Julia Phillips titled <em>Disappearing Earth</em> was released on 2019-05-14.</p>
+</body>
+</html>
+```
+Overview:
+- All the sections went smoothly thankfully, I use SQL moderately for work so I am excited to learn new skills. Overall this was a fun section, although I am not really advanced at building websites I will always remember how to make the background light pink. 
 
 
 
