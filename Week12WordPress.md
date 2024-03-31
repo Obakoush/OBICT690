@@ -123,6 +123,10 @@ drwxr-xr-x 27 www-data www-data 12288 Jan 30 19:27 wp-includes
 -rw-r--r--  1 www-data www-data  3154 Sep 30  2023 xmlrpc.php
 ```
 
+**Access Wordpress + Personalize**
+
+- access wordpress site using <http://34.16.129.98/wordpress/>
+- Set up user *Obakoush* and password *saved on googledrive*
 
 
 
