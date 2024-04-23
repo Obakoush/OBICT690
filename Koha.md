@@ -94,7 +94,7 @@ Set up MySQL and set root user password
 
 Set user password
 
-`mysqladmin -u root password wardah27P``
+`mysqladmin -u root password wardah27P`
 
 
 Apache2 was installed with Koha but needs to be activated. We need to enable URL rewriting and CGI functionality.
@@ -143,7 +143,11 @@ Get Koha username and password in the following file
 `nano /etc/koha/sites/bibliolib/koha-conf.xml`
 
 
-Visit the web installer by accessing http://IP-ADDRESS:8080
+Visit the web installer by accessing [http://IP-ADDRESS:8080] http://34.162.112.205:8080
+
+Should look like this
+
+<img width="300" alt="Screen Shot 2024-04-23 at 1 20 20 AM" src="https://github.com/Obakoush/OBICT690/assets/142951646/d518e3e3-1d1f-4974-8d42-922a61c7bd41">
 
 Follow the instructions on Koha Instillation Process <https://koha-community.org/manual//22.11/en/html/installation.html>
 
@@ -157,7 +161,6 @@ To view the OPAC public
 - Scroll down until you find a line that says **OPACBaseURL**
 - Enter IP address of your server: **http://IP-ADDRESS**
 - Click on **Save all OPAC Preferences**
-- 
 
 
 ## Conclusion + Addtional Tasks
