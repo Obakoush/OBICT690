@@ -157,6 +157,7 @@ To view the OPAC public
 - Scroll down until you find a line that says **OPACBaseURL**
 - Enter IP address of your server: **http://IP-ADDRESS**
 - Click on **Save all OPAC Preferences**
+- 
 
 
 ## Conclusion + Addtional Tasks
