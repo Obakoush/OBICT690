@@ -87,14 +87,14 @@ In order to use Koha, we need to configure some of its files in nano
 In the nano file change line `INTRAPORT="80"` to `INTRAPORT="8080"`
 
 
-Set upnMySQL and set root user password
+Set up MySQL and set root user password
 
 `apt install mysql-server`
 
 
 Set user password
 
-`mysqladmin -u root password wardah!27P`
+`mysqladmin -u root password wardah27P``
 
 
 Apache2 was installed with Koha but needs to be activated. We need to enable URL rewriting and CGI functionality.
